@@ -24,7 +24,7 @@ const { id } = useParams();
     <div style={{
       background:`linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.5),rgba(0,0,0,.8)), url(https://image.tmdb.org/t/p/original/${info.detail.backdrop_path  })`,
       backgroundPosition:'center top 10%',backgroundSize:"cover",backgroundRepeat: 'no-repeat'
-    }} className='relative overflow-auto w-screen h-[170vh] px-[10%]'>
+    }} className='relative overflow-auto w-screen max-h-[200vh] px-[10%]'>
       {/*part 1*/}
       <nav className='w-full h-[10vh] items-center text-zinc-100 flex gap-10 text-xl' >
         <Link onClick={()=>navigate(-1)} className="hover:text-[#D2042D] mr-3 ri-arrow-left-line  "></Link>
