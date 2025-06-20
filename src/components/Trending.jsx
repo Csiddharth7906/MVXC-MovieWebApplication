@@ -77,7 +77,7 @@ const Trending = () => {
                     <div className="flex justify-center bg-[#1F1E24] items-center py-10">
                         <div className="relative w-12 h-12">
                         <div className="absolute inset-0 border-4 border-[#D2042D] border-t-transparent rounded-full animate-spin"></div>
-                        <div className="absolute inset-2 border-4 border-[#6556CD] border-b-transparent rounded-full animate-spin-reverse"></div>
+                        <div className="absolute inset-2 border-4 border-[#D2042D] border-b-transparent rounded-full animate-spin-reverse"></div>
                         </div>
                     </div>
                     }
