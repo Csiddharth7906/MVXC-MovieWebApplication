@@ -21,7 +21,7 @@ export const asyncloadtv = (id) => async(dispatch,getState)=>{
                 watchproviders:watchproviders.data.results.IN,
                
             }
-           
+         
         // Dispatch the action to load tv details into the store
             dispatch(loadtv(theultimatedetails));
         

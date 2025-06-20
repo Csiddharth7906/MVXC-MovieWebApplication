@@ -25,14 +25,14 @@ const PersonDetails = () => {
     },[id])
   return info? (
     <div className='  w-screen px-[10%] min-h-[210vh] bg-[#1F1E24] '>
-      {/* part 1 nav*/}
+      {/* part 1 nav navigation*/}
        <nav className='w-full h-[10vh] items-center text-zinc-100 flex gap-10 text-xl' >
               <Link onClick={()=>navigate(-1)} className="hover:text-[#D2042D] mr-3 ri-arrow-left-line  "></Link>
       
             </nav>
 
       <div className='w-full flex '>
-      {/* part 2 img */}
+      {/* part 2 img  */}
       <div className='w-[15%]'>
          <img className='shadow-[8px_17px_58px_2px_rgba(0,0,0,.5)] hover:shadow-xl hover:shadow-black duration-300 rounded-md h-[40vh] object-fit mt-3   ' src={`https://image.tmdb.org/t/p/original/${ info.detail.profile_path }`} alt="" />
            <hr className='mt-10 mb-5 text-zinc-500 h-[2px]'/>

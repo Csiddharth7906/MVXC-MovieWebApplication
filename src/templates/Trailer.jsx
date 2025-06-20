@@ -10,6 +10,7 @@ const Trailer = () => {
     const {pathname}=useLocation()
     const category = pathname.includes("movie") ? "movie" : "tv";
     const ytvideo =   useSelector((state => state[category].info.videos));
+    console.log("ytvideo", ytvideo);
 
   return (
     <div className='absolute z-[100] bg-[rgba(0,0,0,.9)] top-0 left-0 w-screen h-screen flex items-center justify-center'>

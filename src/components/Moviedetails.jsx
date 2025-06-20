@@ -24,7 +24,7 @@ const { id } = useParams();
     <div style={{
       background:`linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.5),rgba(0,0,0,.8)), url(https://image.tmdb.org/t/p/original/${info.detail.backdrop_path  })`,
       backgroundPosition:'center top 10%',backgroundSize:"cover",backgroundRepeat: 'no-repeat'
-    }} className='relative overflow-auto w-screen h-[170vh] px-[10%]'>
+    }} className='relative overflow-auto w-screen max-h-[200vh] px-[10%]'>
       {/*part 1*/}
       <nav className='w-full h-[10vh] items-center text-zinc-100 flex gap-10 text-xl' >
         <Link onClick={()=>navigate(-1)} className="hover:text-[#D2042D] mr-3 ri-arrow-left-line  "></Link>
@@ -60,6 +60,9 @@ const { id } = useParams();
             <p className='mb-10 leading-6'>{info.translations.join(" , ")}</p>
                      
                      <Link className=' rounded-lg p-5 bg-gradient-to-r from-red-900 via-red-800 to-red-500' to={`${pathname}/trailer`} ><i className="text-xl mr-3 ri-play-fill"></i> Play Trailer</Link>
+
+                     <Link target='_blank'  className=' rounded-lg p-5 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-500 ml-5' to={`https://www.2embed.stream/embed/movie/${info.externalid.id}`} ><i className="text-xl mr-3 ri-play-fill"></i> Watch Now</Link>
+
        </div>
       </div>
        

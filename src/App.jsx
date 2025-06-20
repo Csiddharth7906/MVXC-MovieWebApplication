@@ -11,9 +11,10 @@ import PersonDetails from "./components/PersonDetails";
 import Trailer from "./templates/Trailer";
 import NotFound from "./components/NotFound";
 
+
 const App = () => {
   return (
-    <div  className="bg-[#1F1E24]  flex w-screen h-screen   ">
+    <div className="bg-[#1F1E24]  flex w-screen h-screen    ">
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/trending" element={<Trending />}/>
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/movie" element={<Movie />} />
          <Route path="/movie/details/:id" element={<Moviedetails/>} >
          <Route path="/movie/details/:id/trailer" element={<Trailer/>} />
+        
          
          </Route>
          <Route path="/tv" element={<Tvshows />} />

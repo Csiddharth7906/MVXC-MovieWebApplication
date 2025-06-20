@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { asyncloadtv, removetv } from '../store/actions/tvAction';
 import { Link, Outlet, useLocation, useNavigate, useParams } from 'react-router-dom';
@@ -7,6 +7,8 @@ import Loading from './Loading';
 import noimage from "/noimage.jpg";
 
 const Tvdetails = () => {
+  const [season, setSeason] = useState(1);
+  const [episode, setEpisode] = useState(1);
     const {pathname} = useLocation();
    const {info} = useSelector((state) => state.tv);
     document.title = `MVXC | tv Details`;
@@ -21,11 +23,22 @@ const Tvdetails = () => {
           dispatch(removetv())
         }
     },[id])
+  useEffect(() => {
+  if (info && info.detail && info.detail.seasons.length > 0) {
+    const selectedSeason = info.detail.seasons.find(s => s.season_number === Number(season));
+    if (selectedSeason) {
+      setEpisode(1); // Reset episode to 1 when season changes
+    }
+  }
+}, [season, info]);
+
+  
+  
  return info ?(
     <div style={{
-      background:`linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.5),rgba(0,0,0,.8)), url(https://image.tmdb.org/t/p/original/${info.detail.backdrop_path  })`,
+      background:`linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.5),rgba(189, 181, 181, 0.8)), url(https://image.tmdb.org/t/p/original/${info.detail.backdrop_path  })`,
       backgroundPosition:'center top 10%',backgroundSize:"cover",backgroundRepeat: 'no-repeat'
-    }} className='relative overflow-auto w-screen h-[170vh] px-[10%]'>
+    }} className='relative overflow-auto w-screen max-h-[200vh] px-[10%]'>
       {/*part 1*/}
       <nav className='w-full h-[10vh] items-center text-zinc-100 flex gap-10 text-xl' >
         <Link onClick={()=>navigate(-1)} className="hover:text-[#D2042D] mr-3 ri-arrow-left-line  "></Link>
@@ -61,6 +74,39 @@ const Tvdetails = () => {
             <p className='mb-10 leading-6'>{info.translations.join(" , ")}</p>
                      
                      <Link className=' rounded-lg p-5 bg-[#D2042D]' to={`${pathname}/trailer`} ><i className="text-xl mr-3 ri-play-fill"></i> Play Trailer</Link>
+                      <Link target='_blank'  className=' rounded-lg p-5 bg-gradient-to-r from-blue-900 via-blue-800 to-blue-500 ml-5' to={`https://www.2embed.stream/embed/tv/${info.externalid.id}/${season}/${episode}`} ><i className="text-xl mr-3 ri-play-fill"></i> Watch Now</Link>
+  <div className="text-white my-6 flex gap-5 items-center">
+  <div>
+    <label className="block mb-1 font-semibold">Season:</label>
+    <select
+      className="bg-gray-800 text-white px-3 py-2 rounded"
+      value={season}
+      onChange={(e) => setSeason(e.target.value)}
+    >
+      {info.detail.seasons.map((s, i) => (
+        <option key={i} value={s.season_number || i}>
+          {s.name || `Season ${s.season_number || i}`}
+        </option>
+      ))}
+    </select>
+  </div>
+
+  <div>
+    <label className="block mb-1 font-semibold">Episode:</label>
+    <select
+      className="bg-gray-800 text-white px-3 py-2 rounded"
+      value={episode}
+      onChange={(e) => setEpisode(e.target.value)}
+    >
+      {Array.from({
+        length: info.detail.seasons.find(s => (s.season_number || s.id || i) == season)?.episode_count || 12
+      }, (_, i) => (
+        <option key={i} value={i + 1}>Episode {i + 1}</option>
+      ))}
+    </select>
+  </div>
+</div>
+
        </div>
       </div>
        

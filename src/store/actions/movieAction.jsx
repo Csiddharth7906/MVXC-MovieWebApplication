@@ -23,6 +23,7 @@ export const asyncloadmovie = (id) => async(dispatch,getState)=>{
             }
           
         // Dispatch the action to load movie details into the store
+      
             dispatch(loadmovie(theultimatedetails));
         
     } catch (error) {
